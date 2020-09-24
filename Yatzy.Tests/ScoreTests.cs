@@ -5,6 +5,20 @@ namespace Yatzy.Tests
     public class ScoreTests
     {
         [Theory]
+        [InlineData(50,0,50)]
+        [InlineData(100,25,75)]
+        public void ShouldAddScoreToTotal(int expectedTotal, int currentTotal, int scoreToAdd)
+        {
+            var score = new Score();
+            score.Total = currentTotal;
+            score.AddScoreToTotal(scoreToAdd);
+
+            var actualTotal = score.Total;
+
+            Assert.Equal(expectedTotal, actualTotal);
+        }
+
+        [Theory]
         [InlineData(50, new int[5] {1,1,1,1,1}, "yatzy")]
         [InlineData(0, new int[5] {1,1,1,2,1}, "yatzy")]
         public void ShouldReturnScoreForYatzy(int expectedScore, int[] roll, string category)

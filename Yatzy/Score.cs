@@ -5,6 +5,13 @@ namespace Yatzy
 {
     public class Score
     {
+        public int Total {get; set;}
+
+        public void AddScoreToTotal(int score)
+        {
+            Total += score;
+        }
+
         public int CalculateScore(int[] roll, string category)
         {
             switch(category)

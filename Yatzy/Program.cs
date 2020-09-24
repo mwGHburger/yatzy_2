@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
 
 namespace Yatzy
 {
@@ -6,10 +7,9 @@ namespace Yatzy
     {
         static void Main(string[] args)
         {
-            var score = new Score();
-            var arr = new int[5] {1,1,2,2,2};
-            System.Console.WriteLine(Array.FindAll(arr, x => x == arr[3]).Length);
-
+            var category = new Category();
+            category.CreateCategories();
+            System.Console.WriteLine(category.Categories.Keys.Count);
         }
     }
 }

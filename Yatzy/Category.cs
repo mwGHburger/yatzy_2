@@ -1,10 +1,13 @@
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Yatzy
 {
     public class Category
     {
-        private List<string> CategoryList = new List<string> {
+
+        // TODO: can we just assign Categories here, and not in the Constructor?
+        public List<string> Categories {get; set;} = new List<string> {
             "yatzy",
             "full house",
             "large straight",
@@ -21,25 +24,19 @@ namespace Yatzy
             "ones",
             "chance"
         };
-
-        // TODO: can we just assign Categories here, and not in the Constructor?
-        public Dictionary<string,bool> Categories {get; set;}
         
-        public Category()
-        {
-            Categories = new Dictionary<string,bool>();
-        }
         public void RemoveCategory(string category)
         {
             Categories.Remove(category);
         }
-        
-        public void CreateCategories()
+
+        public bool ValidateCategoryInput(string input)
         {
-            foreach(string category in CategoryList)
+            if(Categories.Contains(input))
             {
-                Categories.Add(category, true);
+                return true;
             }
+            return false;
         }
     }
 }

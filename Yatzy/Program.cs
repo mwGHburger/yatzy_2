@@ -7,9 +7,23 @@ namespace Yatzy
     {
         static void Main(string[] args)
         {
-            var category = new Category();
-            // category.CreateCategories();
-            System.Console.WriteLine(category.Categories.Contains("yatzy"));
+            // var cat = new Category();
+            // System.Console.WriteLine(cat.Categories.Count); 
+            // cat.RemoveCategory("yatzy");
+            // System.Console.WriteLine(cat.Categories.Count); 
+            // cat.RemoveCategory("yatzy");
+            // System.Console.WriteLine(cat.Categories.Count); 
+            
+            var diceHand = new List<Dice> {
+                new Dice(),
+                new Dice(),
+                new Dice(),
+                new Dice(),
+                new Dice()
+            };
+            var player = new Player(diceHand);
+            var game = new Game(new Category(), player, new Score(), new UI());
+            game.Run();
         }
     }
 }

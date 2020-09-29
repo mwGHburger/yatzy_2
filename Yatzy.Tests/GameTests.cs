@@ -1,15 +1,27 @@
+using System.Collections.Generic;
 using Xunit;
 
 namespace Yatzy.Tests
 {
     public class GameTests
     {
-        [Fact]
+        // TODO: Automate inputs
+        // [Fact]
         public void ShouldRunGame()
         {
-            // TODO: var game = new Game(new Category());
-            // game.Run();
-            // Assert.True(game.Categories.Count == 0); 
+            var diceHand = new List<Dice> {
+                new Dice(),
+                new Dice(),
+                new Dice(),
+                new Dice(),
+                new Dice()
+            };
+            var player = new Player(diceHand);
+            var game = new Game(new Category(), player, new Score(), new UI());
+            game.Run();
+
+            // TODO: Need to test for state change
+            Assert.True(game.Category.Categories.Count == 0); 
         }
     }
 }

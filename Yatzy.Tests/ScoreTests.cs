@@ -45,6 +45,7 @@ namespace Yatzy.Tests
 
         [Theory]
         [InlineData(20, new int[] { 2,3,4,5,6}, "large straight")]
+        [InlineData(20, new int[] { 6,5,4,2,3}, "large straight")]
         [InlineData(0, new int[] { 1,2,3,4,5}, "large straight")]
         public void ReturnScoreForLargeStraight(int expectedScore, int[] roll, string category)
         {
@@ -57,6 +58,7 @@ namespace Yatzy.Tests
 
         [Theory]
         [InlineData(15, new int[] { 1,2,3,4,5}, "small straight")]
+        [InlineData(15, new int[] { 2,1,4,3,5}, "small straight")]
         [InlineData(0, new int[] { 2,3,4,5,6}, "small straight")]
         public void ReturnScoreForSmallStraight(int expectedScore, int[] roll, string category)
         {

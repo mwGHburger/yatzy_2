@@ -74,6 +74,7 @@ namespace Yatzy
 
         private int ScoreForStraight(int[] roll, int[] straight)
         {
+            Array.Sort(roll);
             if (roll.SequenceEqual(straight))
             {
                 return SumAllRolledValues(roll);

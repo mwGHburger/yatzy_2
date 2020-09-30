@@ -27,9 +27,9 @@ namespace Yatzy
             }
         }
 
-        //TODO: This needs a refactor
         public void FormatDiceHand()
         {
+            var DiceValues = new int[5];
             for(int i = 0; i < DiceHand.Count; i++)
             {
                 DiceHandValues[i] = DiceHand[i].Value;
@@ -66,7 +66,7 @@ namespace Yatzy
 
         public void Reset()
         {
-            UI.DisplayText("Resetting Dice Hand");
+            UI.DisplayText("Resetting player dice hand.");
             foreach(Dice dice in DiceHand)
             {
                 dice.IsHeld = false;
@@ -75,17 +75,35 @@ namespace Yatzy
         }
         public void IncreaseRollCount()
         {
+            UI.DisplayText("Increased player roll count.");
             RollCount += 1;
+        }
+
+        public bool CheckHeldAllDice()
+        {
+            foreach(Dice dice in DiceHand)
+            {
+                if (!dice.IsHeld)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void RunRollTurn(int maximumRolls, IUserInput input)
         {
             while(RollCount < maximumRolls)
-            {
+            {   
+                if (CheckHeldAllDice()) { return; }
+                UI.DisplayText($"Roll Turn: {RollCount + 1}");
                 RollDiceHand();
                 UI.DisplayDiceHand(DiceHand);
                 IncreaseRollCount();
-                ChooseDiceToHold(input);
+                if (RollCount < maximumRolls)
+                {
+                    ChooseDiceToHold(input);
+                }
             }
         }
 

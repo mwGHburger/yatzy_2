@@ -133,7 +133,6 @@ namespace Yatzy.Tests
             Assert.Equal(expectedScore, actualScore);
         }
 
-        //chance - by testing this first, we can develop a method than can be applied to other score calculation methods
         [Theory]
         [InlineData(14, new int[5] {1,1,3,3,6}, "chance")]
         [InlineData(21, new int[5] {4,5,5,6,1}, "chance")]

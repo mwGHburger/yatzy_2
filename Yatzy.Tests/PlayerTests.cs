@@ -91,7 +91,7 @@ namespace Yatzy.Tests
         }
 
         [Fact] 
-        public void ShouldNotLetPlayersHaveMoreThan3DiceRollPerRollTurn()
+        public void ShouldNotLetPlayersHaveMoreThan3DiceRolls()
         {
             var mockConsoleParser = new Mock<IUserInput>();
             mockConsoleParser.Setup(x => x.GetInput()).Returns("no");

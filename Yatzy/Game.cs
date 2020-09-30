@@ -19,13 +19,14 @@ namespace Yatzy
         public Score Score {get; set;}
         public void Run()
         {
-            UI.DisplayText("Let's Roll!!");
+            UI.DisplayText("Beginning Yatzy Game!\n");
             
             while(Category.Categories.Count > 0)
             {
-                UI.DisplayText($"Number of categories {Category.Categories.Count}");
+                UI.DisplayText($"Number of categories {Category.Categories.Count}\n");
                 Player.RunRollTurn(3, UIConsole);
                 
+                UI.DisplayText($"\nPlayer's final dice hand is: ");
                 UI.DisplayDiceHand(Player.DiceHand);
                 
                 // TODO: Refactor
@@ -47,26 +48,17 @@ namespace Yatzy
                         }
                         Category.RemoveCategory(selectedCategory);
                         Player.FormatDiceHand();
-                        Score.AddScoreToTotal(Score.CalculateScore(Player.IntDiceHand, selectedCategory));
+                        Score.AddScoreToTotal(Score.CalculateScore(Player.DiceHandValues, selectedCategory));
                         UI.DisplayText($"\nYour total is now: {Score.Total}\n");
                     }
                     catch(Exception)
                     {
                         UI.DisplayText("Invalid input! Please select a category: ");
                     }
-                    
                 }
-                
-                if(Category.Categories.Count > 0)
-                {
-                    Player.Reset();
-                }
-                else
-                {
-                    UI.DisplayText("Game ending...");
-                }
-                
+                Player.Reset();
             }
+            UI.DisplayText("Game ending...");
             
         }
     }

@@ -7,7 +7,7 @@ namespace Yatzy.Tests
     {
         // TODO: Automate inputs
         // [Fact]
-        public void ShouldRunGame()
+        public void ShouldCallCertainMethodWhenGameRuns()
         {
             var diceHand = new List<Dice> {
                 new Dice(),
@@ -20,7 +20,6 @@ namespace Yatzy.Tests
             var game = new Game(new Category(), player, new Score(), new UI());
             game.Run();
 
-            // TODO: Need to test for state change
             Assert.True(game.Category.Categories.Count == 0); 
         }
     }

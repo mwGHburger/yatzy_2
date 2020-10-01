@@ -35,7 +35,7 @@ namespace Yatzy.Tests
         }
 
         [Fact]
-        public void ShouldSelectCategory()
+        public void SelectedCategoryPropertyShould_ReturnString()
         {
             var player = new Player(diceHand);
             player.SelectCategory("yatzy");
@@ -46,7 +46,7 @@ namespace Yatzy.Tests
         public void ShouldBeAbleToDecideWhetherToHoldDice()
         {
             var player = new Player(diceHand);
-            var mockConsoleParser = new Mock<IUserInput>();
+            var mockConsoleParser = new Mock<UI>();
             mockConsoleParser.Setup(x => x.GetInput()).Returns("yes");
             player.RollDiceHand();
             player.ChooseDiceToHold(mockConsoleParser.Object);
@@ -64,9 +64,9 @@ namespace Yatzy.Tests
 
         // Test Should reroll hand for dice not held
         [Fact]
-        public void ShouldNotReRollDiceHeld()
+        public void ShouldNotReRollDiceHeldDuringRunRollTurn()
         {
-            var mockConsoleParser = new Mock<IUserInput>();
+            var mockConsoleParser = new Mock<UI>();
             mockConsoleParser.Setup(x => x.GetInput()).Returns("yes");
 
             var player = new Player(diceHand);
@@ -80,7 +80,7 @@ namespace Yatzy.Tests
         [Fact]
         public void ShouldResetTurnAfterRound()
         {
-            var mockConsoleParser = new Mock<IUserInput>();
+            var mockConsoleParser = new Mock<UI>();
             mockConsoleParser.Setup(x => x.GetInput()).Returns("yes");
 
             var player = new Player(diceHand);
@@ -93,7 +93,7 @@ namespace Yatzy.Tests
         [Fact] 
         public void ShouldNotLetPlayersHaveMoreThan3DiceRolls()
         {
-            var mockConsoleParser = new Mock<IUserInput>();
+            var mockConsoleParser = new Mock<UI>();
             mockConsoleParser.Setup(x => x.GetInput()).Returns("no");
             var player = new Player(diceHand);
             var expectedRollCount = 3;

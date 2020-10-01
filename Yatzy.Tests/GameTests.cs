@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Moq;
 using Xunit;
 
 namespace Yatzy.Tests
 {
     public class GameTests
     {
-        // TODO: Automate inputs
+        // TODO: Testing Whole Systems & Automate inputs
         // [Fact]
         public void ShouldCallCertainMethodWhenGameRuns()
         {
@@ -16,11 +17,19 @@ namespace Yatzy.Tests
                 new Dice(),
                 new Dice()
             };
-            var player = new Player(diceHand);
-            var game = new Game(new Category(), player, new Score(), new UI());
-            game.Run();
+            
+            // Mock object inputs
+            var mockCategory = new Mock<Category>();
+            var mockPlayer = new Mock<Player>(diceHand);
+            
+            var mockScore = new Mock<Score>();
+            var mockUI = new Mock<UI>();
+            mockUI.Setup(x => x.GetInput()).Returns("yes");
 
-            Assert.True(game.Category.Categories.Count == 0); 
+            var game = new Game(mockCategory.Object, mockPlayer.Object, mockScore.Object, mockUI.Object);
+            
+            mockPlayer.Verify(x => x.RunRollTurn(3, It.IsAny<IUserInput>()));
+            
         }
     }
 }
